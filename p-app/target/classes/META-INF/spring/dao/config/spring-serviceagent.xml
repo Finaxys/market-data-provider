@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="currencyPairReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.CurrencyPairReceiver" />
+
+	<bean id="exchangeReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.ExchangeReceiver" />
+
+
+	<bean id="fxRateReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.FXRateReceiver" />
+
+
+	<bean id="indexInfoReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.IndexInfoReceiver" />
+
+
+	<bean id="indexQuoteReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.IndexQuoteReceiver" />
+
+
+	<bean id="stockQuoteReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.StockQuoteReceiver" />
+
+
+	<bean id="stockReceiver"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.receiver.StockReceiver" />
+
+	<bean id="currencyPairRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="currencyPairReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.currency_pairs}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="exchangeRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="exchangeReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.exchanges}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="fxRateRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="fxRateReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.fx_rates}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="indexInfoRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="indexInfoReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.indexes}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="indexQuoteRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="indexQuoteReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.index_quotes}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="stockQuoteRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="stockQuoteReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.stocks_quotes}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+	<bean id="stockRMQSubscriber"
+		class="com.finaxys.rd.marketdataprovider.serviceagent.subscriber.RabbitMqSubscriber">
+		<constructor-arg name="receiver" ref="stockReceiver" />
+		<constructor-arg name="channel" ref="channel" />
+		<constructor-arg name="bindingKey"
+			value="${subscriber.rabbitmq.routingkey.stocks}" />
+		<constructor-arg name="queue"
+			value="${subscriber.rabbitmq.queue.direct}" />
+		<constructor-arg name="exchange"
+			value="${subscriber.rabbitmq.queue.direct.exchange}" />
+	</bean>
+
+</beans>
