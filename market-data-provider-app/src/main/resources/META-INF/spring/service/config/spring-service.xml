@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<bean id="currencyPairService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.CurrencyPairServiceImpl" />
+
+	<bean id="exchangeService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.ExchangeServiceImpl" />
+
+	<bean id="fxRateService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.FXRateServiceImpl" />
+
+	<bean id="indexQuoteService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.IndexQuoteServiceImpl" />
+
+	<bean id="indexService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.IndexServiceImpl" />
+
+	<bean id="stockService" class="com.finaxys.rd.marketdataprovider.service.impl.StockServiceImpl" />
+
+	<bean id="stockQuoteService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.StockQuoteServiceImpl" />
+
+	<bean id="interbankRateService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.InterbankRateServiceImpl" />
+
+	<bean id="interbankRateDataService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.InterbankRateDataServiceImpl" />
+
+	<bean id="optionChainService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.OptionChainServiceImpl" />
+
+	<bean id="optionQuoteService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.OptionQuoteServiceImpl" />
+
+	<bean id="optionService"
+		class="com.finaxys.rd.marketdataprovider.service.impl.OptionServiceImpl" />
+</beans>
