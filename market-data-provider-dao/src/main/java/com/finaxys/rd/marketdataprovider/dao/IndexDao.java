@@ -12,46 +12,7 @@ import com.finaxys.rd.dataextraction.domain.Index;
 /**
  * The Interface IndexInfoDao.
  */
-public interface IndexDao {
-	
-	/**
-	 * Adds the.
-	 *
-	 * @param exchange the exchange
-	 * @return true, if successful
-	 */
-	public boolean add(Index index);
-	
-	/**
-	 * Gets the.
-	 *
-	 * @param provider the provider
-	 * @param exchSymb the exch symb
-	 * @param symbol the symbol
-	 * @return the index info
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public Index get(char provider, String exchSymb, String symbol) throws IOException;
-	
-	/**
-	 * List.
-	 *
-	 * @param prefix the prefix
-	 * @return the list
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public List<Index> list(String prefix) throws IOException;
-	
-
-	public List<Index> list(byte[] prefix) throws IOException;
-	/**
-	 * List all.
-	 *
-	 * @return the list
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public List<Index> listAll() throws IOException;
-	
+public interface IndexDao extends HBaseBasicDao<Index> {
 	
 	public List<Index> list(char provider, String exchSymb) throws IOException ;
 }

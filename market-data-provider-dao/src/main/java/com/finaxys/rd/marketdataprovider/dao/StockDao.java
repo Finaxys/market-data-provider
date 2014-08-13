@@ -3,56 +3,18 @@
  */
 package com.finaxys.rd.marketdataprovider.dao;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.finaxys.rd.dataextraction.domain.Stock;
+import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Interface StockDao.
  */
-public interface StockDao {
+public interface StockDao extends HBaseBasicDao<Stock> {
 	
-	/**
-	 * Adds the.
-	 *
-	 * @param stock the stock
-	 * @return true, if successful
-	 */
-	public boolean add(Stock stock);
+	public List<Stock> list(char provider, String exchSymb) throws DataAccessException;
 	
-	/**
-	 * Gets the.
-	 *
-	 * @param provider the provider
-	 * @param exchSymb the exch symb
-	 * @param symbol the symbol
-	 * @return the stock
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public Stock get(char provider, char source, String exchSymb, String symbol, Long inputDate) throws IOException;
-	
-	/**
-	 * List.
-	 *
-	 * @param prefix the prefix
-	 * @return the list
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public List<Stock> list(byte[] prefix) throws IOException;
-	
-	/**
-	 * List all.
-	 *
-	 * @return the list
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public List<Stock> listAll() throws IOException;
-	
-	
-	
-	public List<Stock> list(char provider, String exchSymb) throws IOException;
-	
-	public List<Stock> list(char provider) throws IOException;
+	public List<Stock> list(char provider) throws DataAccessException;
 }

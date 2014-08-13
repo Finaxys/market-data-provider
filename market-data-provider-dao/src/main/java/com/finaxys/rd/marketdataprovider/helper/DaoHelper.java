@@ -13,15 +13,14 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.hadoop.hbase.client.Scan;
-import org.apache.hadoop.hbase.filter.PrefixFilter;
-import org.apache.hadoop.hbase.filter.RowFilter;
-import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -35,6 +34,8 @@ import com.finaxys.rd.dataextraction.domain.Enum.DataType;
  * The Class DaoHelper.
  */
 public class DaoHelper {
+	
+	static Logger logger = Logger.getLogger(DaoHelper.class);
 
 	/** The Constant MD5_LENGTH. */
 	public static final int MD5_LENGTH = Integer
@@ -42,36 +43,6 @@ public class DaoHelper {
 
 	
 
-	public static Scan mkScan() {
-		Scan scan = new Scan();
-		return scan;
-	}
-
-
-	public static Scan mkScan(byte[] start, byte[] end) {
-		Scan scan = new Scan(start, end);
-		return scan;
-	}
-
-	public static Scan mkScan(String prefix) {
-		Scan scan = new Scan();
-		org.apache.hadoop.hbase.filter.RegexStringComparator prefixFilter = new org.apache.hadoop.hbase.filter.RegexStringComparator(
-				"^" + prefix + "*");
-		RowFilter rowFilter = new RowFilter(CompareOp.EQUAL, prefixFilter);
-		scan.setFilter(rowFilter);
-
-		return scan;
-	}
-
-	public static Scan mkScan(byte[] prefix) {
-		Scan scan = new Scan();
-		PrefixFilter prefixFilter = new org.apache.hadoop.hbase.filter.PrefixFilter(
-				prefix);
-		scan.setFilter(prefixFilter);
-
-		return scan;
-	}
-	
 	public static Object getTypedValue(Field field, byte[] value) {
 
 		if (value != null) {
@@ -86,7 +57,7 @@ public class DaoHelper {
 			if (field.getType().equals(LocalDate.class))
 				return new DateTime(Bytes.toLong(value)).toLocalDate();
 			if (field.getType().equals(char.class))
-				return (char) value[3];
+				return (char) value[0];
 			return value;
 		} else
 			return null;
@@ -109,7 +80,7 @@ public class DaoHelper {
 				return Bytes.toBytes(new LocalDate(value)
 						.toDateTimeAtStartOfDay().getMillis());
 			else if (field.getType().equals(char.class))
-				return Bytes.toBytes((Character) value);
+				return new byte[]{(byte)((Character) value).charValue()};
 			else if (field.getType().equals(DateTime.class))
 				return Bytes.toBytes(((DateTime) value).getMillis());
 			else if (field.getType().equals(BigDecimal.class))
@@ -188,6 +159,17 @@ public class DaoHelper {
 		return d.digest(Bytes.toBytes(s));
 	}
 
+	
+	public static List<Field> getFields(Class<?> clazz){
+		List<Field> attributes = new ArrayList<Field>();
+	    while (clazz != null) {
+	    	attributes.addAll(Arrays.asList(clazz.getDeclaredFields()));
+	    	clazz = clazz.getSuperclass();
+	    }
+	    return attributes;
+	}
+	
+	
 	/**
 	 * The Enum Configuration.
 	 */

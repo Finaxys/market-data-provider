@@ -3,29 +3,16 @@
  */
 package com.finaxys.rd.marketdataprovider.dao;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
 import com.finaxys.rd.dataextraction.domain.OptionChain;
+import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Interface OptionChainDao.
  */
-public interface OptionChainDao {
-
-	public boolean add(OptionChain optionChain);
-
-	public OptionChain get(char provider, String symbol, LocalDate expiration, DateTime inputDate) throws IOException;
-
-	public List<OptionChain> list(String prefix) throws IOException;
-
-	public List<OptionChain> list(byte[] prefix) throws IOException;
-
-	public List<OptionChain> listAll() throws IOException;
+public interface OptionChainDao extends HBaseBasicDao<OptionChain>{
 	
-	public List<OptionChain> list(char provider) throws IOException;
+	public List<OptionChain> list(char provider) throws DataAccessException;
 }
