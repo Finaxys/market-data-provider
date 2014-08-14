@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.Index;
 /**
  * The Interface IndexInfoService.
  */
-public interface IndexService  extends CRUDService<Index>{
+public interface IndexService  extends BasicService<Index>{
 	
 }

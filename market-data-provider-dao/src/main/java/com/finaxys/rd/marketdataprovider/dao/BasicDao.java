@@ -12,7 +12,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Interface CurrencyPairDao.
  */
-public interface HBaseBasicDao<T> {
+public interface BasicDao<T> {
 
 	public boolean add(T bean) throws DataAccessException;
 

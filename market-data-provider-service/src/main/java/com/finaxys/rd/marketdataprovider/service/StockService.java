@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.Stock;
 /**
  * The Interface StockService.
  */
-public interface StockService  extends CRUDService<Stock>{
+public interface StockService  extends BasicService<Stock>{
 	
 }

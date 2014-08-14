@@ -10,11 +10,11 @@ public class TimeAdapter
     extends XmlAdapter<String, DateTime>{
 	DateTimeFormatter dformatter = DateTimeFormat.forPattern("HH:mm:ss");
 	
-    public DateTime unmarshal(String v) throws Exception {
+    public DateTime unmarshal(String v)   {
         return dformatter.parseDateTime(v);
     }
  
-    public String marshal(DateTime v) throws Exception {
+    public String marshal(DateTime v)   {
         return dformatter.print(v);
     }
  

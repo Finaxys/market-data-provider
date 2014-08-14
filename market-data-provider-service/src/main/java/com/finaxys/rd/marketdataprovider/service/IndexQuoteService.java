@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.IndexQuote;
 /**
  * The Interface IndexQuoteService.
  */
-public interface IndexQuoteService  extends CRUDService<IndexQuote>{
+public interface IndexQuoteService  extends BasicService<IndexQuote>{
 	
 }

@@ -12,7 +12,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Interface ExchangeDao.
  */
-public interface ExchangeDao extends HBaseBasicDao<Exchange>{
+public interface ExchangeDao extends BasicDao<Exchange>{
 	
 	public List<Exchange> list(char provider) throws DataAccessException;
 }

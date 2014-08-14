@@ -7,6 +7,6 @@ import com.finaxys.rd.dataextraction.domain.InterbankRate;
 /**
 * The Interface RatesService.
 */
-public interface InterbankRateService  extends CRUDService<InterbankRate>{
+public interface InterbankRateService  extends BasicService<InterbankRate>{
 
 }

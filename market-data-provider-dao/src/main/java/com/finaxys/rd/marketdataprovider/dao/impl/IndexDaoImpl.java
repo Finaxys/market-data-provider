@@ -5,6 +5,7 @@ package com.finaxys.rd.marketdataprovider.dao.impl;
 
 import java.util.List;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 
@@ -17,22 +18,27 @@ import com.finaxys.rd.marketdataprovider.helper.DaoHelper;
 /**
  * The Class IndexDaoImpl.
  */
-public class IndexDaoImpl extends HBaseBasicDaoImpl<Index> implements IndexDao {
+public class IndexDaoImpl extends AbstractBasicDao<Index> implements IndexDao {
 
 	static Logger logger = Logger.getLogger(IndexDaoImpl.class);
 
 	public IndexDaoImpl() {
-		super(Index.class);
+		super();
+	}
+
+	public IndexDaoImpl(HConnection connection) {
+		super(connection);
+		// TODO Auto-generated constructor stub
 	}
 
 	public List<Index> list(char provider, String exchSymb) throws DataAccessException {
 		byte provByte = (byte) provider;
 		byte[] exchSymbHash = DaoHelper.md5sum(exchSymb);
-		byte[] prefix = new byte[DaoHelper.MD5_LENGTH + 1];
+		byte[] prefix = new byte[exchSymbHash.length + 1];
 
 		int offset = 0;
 		offset = Bytes.putByte(prefix, offset, provByte);
-		Bytes.putBytes(prefix, offset, exchSymbHash, 0, DaoHelper.MD5_LENGTH);
+		Bytes.putBytes(prefix, offset, exchSymbHash, 0, exchSymbHash.length);
 
 		return list(prefix);
 

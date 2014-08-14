@@ -5,6 +5,7 @@ package com.finaxys.rd.marketdataprovider.dao.impl;
 
 import java.util.List;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 
@@ -16,15 +17,19 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Class CurrencyPairDaoImpl.
  */
-public class CurrencyPairDaoImpl extends HBaseBasicDaoImpl<CurrencyPair> implements CurrencyPairDao {
+public class CurrencyPairDaoImpl extends AbstractBasicDao<CurrencyPair> implements CurrencyPairDao {
 
 
 	static Logger logger = Logger.getLogger(CurrencyPairDaoImpl.class);
 	
 	public CurrencyPairDaoImpl() {
-		super(CurrencyPair.class);
+		super();
 	}
 	
+	public CurrencyPairDaoImpl(HConnection connection) {
+		super(connection);
+	}
+
 	public List<CurrencyPair> list(char provider)  throws DataAccessException{
 		byte provByte = (byte) provider;
 		byte[] prefix = new byte[1];

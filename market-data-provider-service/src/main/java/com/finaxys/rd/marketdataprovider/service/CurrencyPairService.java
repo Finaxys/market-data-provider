@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.CurrencyPair;
 /**
  * The Interface CurrencyPairService.
  */
-public interface CurrencyPairService extends CRUDService<CurrencyPair> {
+public interface CurrencyPairService extends BasicService<CurrencyPair> {
 	
 }

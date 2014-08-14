@@ -5,6 +5,7 @@ package com.finaxys.rd.marketdataprovider.dao.impl;
 
 import java.util.List;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 
@@ -16,12 +17,16 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Class OptionChainDaoImpl.
  */
-public class OptionChainDaoImpl extends HBaseBasicDaoImpl<OptionChain> implements OptionChainDao {
+public class OptionChainDaoImpl extends AbstractBasicDao<OptionChain> implements OptionChainDao {
 
 	static Logger logger = Logger.getLogger(OptionChainDaoImpl.class);
 
 	public OptionChainDaoImpl() {
-		super(OptionChain.class);
+		super();
+	}
+
+	public OptionChainDaoImpl(HConnection connection) {
+		super(connection);
 	}
 
 	public List<OptionChain> list(char provider) throws DataAccessException {

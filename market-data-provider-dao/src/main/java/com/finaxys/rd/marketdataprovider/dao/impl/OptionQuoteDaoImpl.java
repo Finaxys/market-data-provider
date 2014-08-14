@@ -3,6 +3,7 @@
  */
 package com.finaxys.rd.marketdataprovider.dao.impl;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.log4j.Logger;
 
 import com.finaxys.rd.dataextraction.domain.OptionQuote;
@@ -12,11 +13,16 @@ import com.finaxys.rd.marketdataprovider.dao.OptionQuoteDao;
 /**
  * The Class OptionQuoteDaoImpl.
  */
-public class OptionQuoteDaoImpl extends HBaseBasicDaoImpl<OptionQuote> implements OptionQuoteDao {
+public class OptionQuoteDaoImpl extends AbstractBasicDao<OptionQuote> implements OptionQuoteDao {
 
 	static Logger logger = Logger.getLogger(OptionQuoteDaoImpl.class);
 
 	public OptionQuoteDaoImpl() {
-		super(OptionQuote.class);
+		super();
 	}
+
+	public OptionQuoteDaoImpl(HConnection connection) {
+		super(connection);
+	}
+	
 }

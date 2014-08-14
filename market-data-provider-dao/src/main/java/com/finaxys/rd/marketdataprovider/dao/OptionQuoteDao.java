@@ -9,7 +9,7 @@ import com.finaxys.rd.dataextraction.domain.OptionQuote;
 /**
  * The Interface OptionQuoteDao.
  */
-public interface OptionQuoteDao extends HBaseBasicDao<OptionQuote> {
+public interface OptionQuoteDao extends BasicDao<OptionQuote> {
 		
 
 

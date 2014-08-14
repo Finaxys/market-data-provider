@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.Exchange;
 /**
  * The Interface ExchangeService.
  */
-public interface ExchangeService  extends CRUDService<Exchange>{
+public interface ExchangeService  extends BasicService<Exchange>{
 	
 }

@@ -6,9 +6,10 @@ package com.finaxys.rd.marketdataprovider.dao.impl;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.hadoop.hbase.client.HConnection;
@@ -21,14 +22,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.finaxys.rd.dataextraction.domain.hbase.HashRowKeyStrategy;
-import com.finaxys.rd.dataextraction.domain.hbase.RowKey;
-import com.finaxys.rd.dataextraction.domain.hbase.RowKeyField;
-import com.finaxys.rd.marketdataprovider.dao.HBaseBasicDao;
+import com.finaxys.rd.marketdataprovider.dao.BasicDao;
 import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessFixtureException;
 import com.finaxys.rd.marketdataprovider.dao.exception.HBaseIOException;
-import com.finaxys.rd.marketdataprovider.dao.exception.HBaseRowKeyCreationException;
 import com.finaxys.rd.marketdataprovider.helper.DaoHelper;
 import com.finaxys.rd.marketdataprovider.util.HBaseUtil;
 
@@ -36,9 +33,9 @@ import com.finaxys.rd.marketdataprovider.util.HBaseUtil;
 /**
  * The Class StockQuoteDaoImpl.
  */
-public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
+public abstract class AbstractBasicDao<T> implements BasicDao<T> {
 
-	static Logger logger = Logger.getLogger(HBaseBasicDaoImpl.class);
+	static Logger logger = Logger.getLogger(AbstractBasicDao.class);
 
 	private Class<T> clazz;
 
@@ -46,17 +43,25 @@ public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
 	@Autowired
 	private HConnection connection;
 
-	public HBaseBasicDaoImpl(Class<T> clazz) {
+	public AbstractBasicDao() {
 		super();
-		this.clazz = clazz;
-
+		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+		this.clazz = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
 	}
 
-	public HBaseBasicDaoImpl(Class<T> clazz, HConnection connection) {
+	public AbstractBasicDao(HConnection connection) {
 		super();
+		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+		this.clazz = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
 		this.connection = connection;
-		this.clazz = clazz;
+	}
 
+	public HConnection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(HConnection connection) {
+		this.connection = connection;
 	}
 
 	private T resultToConcreteObject(Result result) {
@@ -80,25 +85,11 @@ public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
 		}
 	}
 
-	private RowKey mkRowKey(T bean) {
-		Assert.notNull(bean, "Cannot persist null object");
-		TreeSet<RowKeyField> rowKeyFields = null;
-		try {
-			rowKeyFields = HBaseUtil.getRowKeyFields(bean, clazz);
-			if(rowKeyFields == null || rowKeyFields.isEmpty()) throw new HBaseRowKeyCreationException();
-			RowKey rowkey = new RowKey(rowKeyFields, new HashRowKeyStrategy());
-			rowkey.createRowKey();
-			return rowkey;
-		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-			throw new HBaseRowKeyCreationException(e);
-		}
-	}
-
 	private Put mkPut(T bean) throws DataAccessFixtureException {
-		Assert.notNull(bean, "Cannot persist null object");
 		Put p = null;
 		try {
-			p = new Put(mkRowKey(bean).getKey());
+			Assert.notNull(bean, "Cannot persist null object");
+			p = new Put(HBaseUtil.mkRowKey(bean).getKey());
 
 			List<Field> attributes = DaoHelper.getFields(clazz);
 			Object value;
@@ -107,7 +98,7 @@ public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
 					p.add(DEFAULT_COLUMN_FAMILY, attribute.getName().getBytes(), DaoHelper.toBytes(attribute, value));
 
 			return p;
-		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | IOException e) {
+		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | IOException e) {
 			throw new DataAccessFixtureException(e);
 		}
 	}
@@ -140,11 +131,15 @@ public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
 			ResultScanner results = table.getScanner(scan);
 			List<T> list = new ArrayList<T>();
 			T bean = null;
-			for (Result result : results) {
+			Iterator<Result> iterator = results.iterator();
+			Result result = null;
+			while (iterator.hasNext()) {
+				result = iterator.next();
 				bean = resultToConcreteObject(result);
 				if (bean != null)
 					list.add(bean);
 			}
+
 			return list;
 		} catch (IOException e) {
 			throw new HBaseIOException(e);
@@ -159,9 +154,14 @@ public class HBaseBasicDaoImpl<T> implements HBaseBasicDao<T> {
 	}
 
 	public boolean add(T bean) throws DataAccessException {
-		Assert.notNull(bean, "Cannot persist null object");
-		Put put = mkPut(bean);
-		return executeAdd(clazz.getSimpleName().getBytes(), put);
+		try {
+			Assert.notNull(bean, "Cannot persist null object");
+
+			Put put = mkPut(bean);
+			return executeAdd(clazz.getSimpleName().getBytes(), put);
+		} catch (IllegalArgumentException e) {
+			throw new DataAccessException(e);
+		}
 	}
 
 	public List<T> list(byte[] prefix) throws DataAccessException {

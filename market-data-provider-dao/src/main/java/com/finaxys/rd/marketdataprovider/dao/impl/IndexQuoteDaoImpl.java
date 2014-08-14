@@ -3,6 +3,7 @@
  */
 package com.finaxys.rd.marketdataprovider.dao.impl;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.log4j.Logger;
 
 import com.finaxys.rd.dataextraction.domain.IndexQuote;
@@ -12,12 +13,17 @@ import com.finaxys.rd.marketdataprovider.dao.IndexQuoteDao;
 /**
  * The Class IndexQuoteDaoImpl.
  */
-public class IndexQuoteDaoImpl extends HBaseBasicDaoImpl<IndexQuote> implements IndexQuoteDao {
+public class IndexQuoteDaoImpl extends AbstractBasicDao<IndexQuote> implements IndexQuoteDao {
 
 	static Logger logger = Logger.getLogger(IndexQuoteDaoImpl.class);
 
 	public IndexQuoteDaoImpl() {
-		super(IndexQuote.class);
+		super();
+	}
+
+	public IndexQuoteDaoImpl(HConnection connection) {
+		super(connection);
+		// TODO Auto-generated constructor stub
 	}
 
 }

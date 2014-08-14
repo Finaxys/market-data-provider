@@ -12,7 +12,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Interface OptionDao.
  */
-public interface OptionDao extends HBaseBasicDao<Option> {
+public interface OptionDao extends BasicDao<Option> {
 
 	public List<Option> list(char provider, String exchSymb) throws DataAccessException;
 

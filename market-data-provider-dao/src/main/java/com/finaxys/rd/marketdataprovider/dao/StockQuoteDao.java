@@ -9,6 +9,6 @@ import com.finaxys.rd.dataextraction.domain.StockQuote;
 /**
  * The Interface StockQuoteDao.
  */
-public interface StockQuoteDao extends HBaseBasicDao<StockQuote> {
+public interface StockQuoteDao extends BasicDao<StockQuote> {
 
 }

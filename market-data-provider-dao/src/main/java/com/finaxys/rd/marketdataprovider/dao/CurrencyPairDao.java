@@ -12,7 +12,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Interface CurrencyPairDao.
  */
-public interface CurrencyPairDao extends HBaseBasicDao<CurrencyPair> {
+public interface CurrencyPairDao extends BasicDao<CurrencyPair> {
 
 	public List<CurrencyPair> list(char provider) throws DataAccessException;
 }

@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.OptionQuote;
 /**
  * The Interface StockQuoteService.
  */
-public interface OptionQuoteService  extends CRUDService<OptionQuote>{
+public interface OptionQuoteService  extends BasicService<OptionQuote>{
 	
 }

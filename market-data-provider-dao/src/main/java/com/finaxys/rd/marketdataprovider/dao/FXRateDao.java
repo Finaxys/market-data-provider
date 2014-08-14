@@ -9,7 +9,7 @@ import com.finaxys.rd.dataextraction.domain.FXRate;
 /**
  * The Interface FXRateDao.
  */
-public interface FXRateDao extends HBaseBasicDao<FXRate>{
+public interface FXRateDao extends BasicDao<FXRate>{
 
 	
 }

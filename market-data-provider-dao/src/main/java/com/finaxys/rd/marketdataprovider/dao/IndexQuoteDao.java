@@ -9,7 +9,7 @@ import com.finaxys.rd.dataextraction.domain.IndexQuote;
 /**
  * The Interface IndexQuoteDao.
  */
-public interface IndexQuoteDao extends HBaseBasicDao<IndexQuote>{
+public interface IndexQuoteDao extends BasicDao<IndexQuote>{
 	
 	
 }

@@ -1,16 +1,21 @@
 package com.finaxys.rd.marketdataprovider.dao.impl;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.log4j.Logger;
 
 import com.finaxys.rd.dataextraction.domain.InterbankRateData;
 import com.finaxys.rd.marketdataprovider.dao.InterbankRateDataDao;
 
-public class InterbankRateDataDaoImpl extends HBaseBasicDaoImpl<InterbankRateData> implements InterbankRateDataDao {
+public class InterbankRateDataDaoImpl extends AbstractBasicDao<InterbankRateData> implements InterbankRateDataDao {
 
 	static Logger logger = Logger.getLogger(InterbankRateDataDaoImpl.class);
 
 	public InterbankRateDataDaoImpl() {
-		super(InterbankRateData.class);
+		super();
+	}
+
+	public InterbankRateDataDaoImpl(HConnection connection) {
+		super(connection);
 	}
 
 }

@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.FXRate;
 /**
  * The Interface FXRateService.
  */
-public interface FXRateService  extends CRUDService<FXRate>{
+public interface FXRateService  extends BasicService<FXRate>{
 	
 }

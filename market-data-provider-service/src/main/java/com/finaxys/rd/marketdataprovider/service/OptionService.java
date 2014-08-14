@@ -10,6 +10,6 @@ import com.finaxys.rd.dataextraction.domain.Option;
 /**
  * The Interface OptionService.
  */
-public interface OptionService  extends CRUDService<Option>{
+public interface OptionService  extends BasicService<Option>{
 	
 }

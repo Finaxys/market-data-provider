@@ -5,6 +5,7 @@ package com.finaxys.rd.marketdataprovider.dao.impl;
 
 import java.util.List;
 
+import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 
@@ -16,12 +17,16 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 /**
  * The Class ExchangeDaoImpl.
  */
-public class ExchangeDaoImpl extends HBaseBasicDaoImpl<Exchange> implements ExchangeDao {
+public class ExchangeDaoImpl extends AbstractBasicDao<Exchange> implements ExchangeDao {
 
 	static Logger logger = Logger.getLogger(ExchangeDaoImpl.class);
 
 	public ExchangeDaoImpl() {
-		super(Exchange.class);
+		super();
+	}
+
+	public ExchangeDaoImpl(HConnection connection) {
+		super(connection);
 	}
 
 	public List<Exchange> list(char provider) throws DataAccessException {
