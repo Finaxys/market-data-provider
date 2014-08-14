@@ -31,7 +31,7 @@ import com.finaxys.rd.dataextraction.domain.Enum.DataType;
  */
 public class DaoHelper {
 
-	static Logger logger = Logger.getLogger(DaoHelper.class);
+	private static Logger logger = Logger.getLogger(DaoHelper.class);
 
 
 	public static Object getTypedValue(Field field, byte[] value) {

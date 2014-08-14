@@ -12,7 +12,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 
 public class InterbankRateDaoImpl extends AbstractBasicDao<InterbankRate> implements InterbankRateDao {
 
-	static Logger logger = Logger.getLogger(InterbankRateDaoImpl.class);
+	private static Logger logger = Logger.getLogger(InterbankRateDaoImpl.class);
 
 	public InterbankRateDaoImpl() {
 		super();

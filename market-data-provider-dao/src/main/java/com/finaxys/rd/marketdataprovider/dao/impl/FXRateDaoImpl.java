@@ -17,7 +17,7 @@ public class FXRateDaoImpl  extends AbstractBasicDao<FXRate> implements FXRateDa
 	
 
 
-	static Logger logger = Logger.getLogger(FXRateDaoImpl.class);
+	private static Logger logger = Logger.getLogger(FXRateDaoImpl.class);
 
 	public FXRateDaoImpl() {
 		super();

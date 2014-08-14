@@ -13,6 +13,5 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  * The Interface OptionChainDao.
  */
 public interface OptionChainDao extends BasicDao<OptionChain>{
-	
-	public List<OptionChain> list(char provider) throws DataAccessException;
+	 List<OptionChain> list(char provider) throws DataAccessException;
 }

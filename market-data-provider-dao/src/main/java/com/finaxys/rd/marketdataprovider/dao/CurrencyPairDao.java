@@ -14,5 +14,5 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public interface CurrencyPairDao extends BasicDao<CurrencyPair> {
 
-	public List<CurrencyPair> list(char provider) throws DataAccessException;
+	 List<CurrencyPair> list(char provider) throws DataAccessException;
 }

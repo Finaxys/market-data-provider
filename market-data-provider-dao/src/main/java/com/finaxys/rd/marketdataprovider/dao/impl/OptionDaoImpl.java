@@ -20,7 +20,7 @@ import com.finaxys.rd.marketdataprovider.helper.DaoHelper;
  */
 public class OptionDaoImpl extends AbstractBasicDao<Option> implements OptionDao {
 
-	static Logger logger = Logger.getLogger(OptionDaoImpl.class);
+	private static Logger logger = Logger.getLogger(OptionDaoImpl.class);
 
 	public OptionDaoImpl() {
 		super();

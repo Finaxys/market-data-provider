@@ -20,7 +20,7 @@ import com.finaxys.rd.marketdataprovider.helper.DaoHelper;
  */
 public class StockDaoImpl extends AbstractBasicDao<Stock> implements StockDao {
 
-	static Logger logger = Logger.getLogger(StockDaoImpl.class);
+	private static Logger logger = Logger.getLogger(StockDaoImpl.class);
 
 	public StockDaoImpl() {
 		super();

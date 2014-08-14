@@ -15,7 +15,7 @@ import com.finaxys.rd.marketdataprovider.dao.StockQuoteDao;
  */
 public class StockQuoteDaoImpl extends AbstractBasicDao<StockQuote> implements StockQuoteDao {
 
-	static Logger logger = Logger.getLogger(StockQuoteDaoImpl.class);
+	private static Logger logger = Logger.getLogger(StockQuoteDaoImpl.class);
 
 	public StockQuoteDaoImpl() {
 		super();

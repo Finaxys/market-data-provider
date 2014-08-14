@@ -35,7 +35,7 @@ import com.finaxys.rd.marketdataprovider.util.HBaseUtil;
  */
 public abstract class AbstractBasicDao<T> implements BasicDao<T> {
 
-	static Logger logger = Logger.getLogger(AbstractBasicDao.class);
+	private static Logger logger = Logger.getLogger(AbstractBasicDao.class);
 
 	private Class<T> clazz;
 

@@ -14,7 +14,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public interface StockDao extends BasicDao<Stock> {
 	
-	public List<Stock> list(char provider, String exchSymb) throws DataAccessException;
+	 List<Stock> list(char provider, String exchSymb) throws DataAccessException;
 	
-	public List<Stock> list(char provider) throws DataAccessException;
+	 List<Stock> list(char provider) throws DataAccessException;
 }

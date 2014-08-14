@@ -8,5 +8,5 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
 
 public interface InterbankRateDao extends BasicDao<InterbankRate>{
 	
-	public List<InterbankRate> list(char provider) throws DataAccessException;
+	 List<InterbankRate> list(char provider) throws DataAccessException;
 }

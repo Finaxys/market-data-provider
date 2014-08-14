@@ -14,6 +14,6 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public interface OptionDao extends BasicDao<Option> {
 
-	public List<Option> list(char provider, String exchSymb) throws DataAccessException;
+	 List<Option> list(char provider, String exchSymb) throws DataAccessException;
 
 }

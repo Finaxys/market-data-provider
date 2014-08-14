@@ -14,10 +14,10 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public interface BasicDao<T> {
 
-	public boolean add(T bean) throws DataAccessException;
+	 boolean add(T bean) throws DataAccessException;
 
-	public List<T> list(byte[] prefix) throws DataAccessException;
+	 List<T> list(byte[] prefix) throws DataAccessException;
 
-	public List<T> listAll() throws DataAccessException;
+	 List<T> listAll() throws DataAccessException;
 
 }

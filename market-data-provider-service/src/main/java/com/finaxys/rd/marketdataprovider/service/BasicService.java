@@ -11,5 +11,5 @@ import com.finaxys.rd.marketdataprovider.service.exception.ServiceException;
  * The Interface CurrencyPairService.
  */
 public interface BasicService<T> {
-	public boolean add(T t) throws ServiceException;
+	 boolean add(T t) throws ServiceException;
 }

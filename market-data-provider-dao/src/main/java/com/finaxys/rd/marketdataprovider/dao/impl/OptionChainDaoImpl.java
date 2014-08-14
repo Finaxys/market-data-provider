@@ -19,7 +19,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public class OptionChainDaoImpl extends AbstractBasicDao<OptionChain> implements OptionChainDao {
 
-	static Logger logger = Logger.getLogger(OptionChainDaoImpl.class);
+	private static Logger logger = Logger.getLogger(OptionChainDaoImpl.class);
 
 	public OptionChainDaoImpl() {
 		super();

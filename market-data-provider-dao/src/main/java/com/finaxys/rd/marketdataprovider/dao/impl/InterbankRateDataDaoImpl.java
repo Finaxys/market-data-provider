@@ -8,7 +8,7 @@ import com.finaxys.rd.marketdataprovider.dao.InterbankRateDataDao;
 
 public class InterbankRateDataDaoImpl extends AbstractBasicDao<InterbankRateData> implements InterbankRateDataDao {
 
-	static Logger logger = Logger.getLogger(InterbankRateDataDaoImpl.class);
+	private static Logger logger = Logger.getLogger(InterbankRateDataDaoImpl.class);
 
 	public InterbankRateDataDaoImpl() {
 		super();

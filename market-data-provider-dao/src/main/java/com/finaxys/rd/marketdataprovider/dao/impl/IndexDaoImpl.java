@@ -20,7 +20,7 @@ import com.finaxys.rd.marketdataprovider.helper.DaoHelper;
  */
 public class IndexDaoImpl extends AbstractBasicDao<Index> implements IndexDao {
 
-	static Logger logger = Logger.getLogger(IndexDaoImpl.class);
+	private static Logger logger = Logger.getLogger(IndexDaoImpl.class);
 
 	public IndexDaoImpl() {
 		super();

@@ -26,7 +26,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.HBaseRowKeyCreationExcept
 
 public class HBaseUtil {
 
-	static Logger logger = Logger.getLogger(HBaseUtil.class);
+	private static Logger logger = Logger.getLogger(HBaseUtil.class);
 
 	public static TreeSet<RowKeyField> getRowKeyFields(Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		Class<?> clazz = bean.getClass();

@@ -15,7 +15,7 @@ import com.finaxys.rd.marketdataprovider.dao.OptionQuoteDao;
  */
 public class OptionQuoteDaoImpl extends AbstractBasicDao<OptionQuote> implements OptionQuoteDao {
 
-	static Logger logger = Logger.getLogger(OptionQuoteDaoImpl.class);
+	private static Logger logger = Logger.getLogger(OptionQuoteDaoImpl.class);
 
 	public OptionQuoteDaoImpl() {
 		super();

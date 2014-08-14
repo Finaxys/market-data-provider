@@ -15,7 +15,7 @@ import com.finaxys.rd.marketdataprovider.dao.IndexQuoteDao;
  */
 public class IndexQuoteDaoImpl extends AbstractBasicDao<IndexQuote> implements IndexQuoteDao {
 
-	static Logger logger = Logger.getLogger(IndexQuoteDaoImpl.class);
+	private static Logger logger = Logger.getLogger(IndexQuoteDaoImpl.class);
 
 	public IndexQuoteDaoImpl() {
 		super();

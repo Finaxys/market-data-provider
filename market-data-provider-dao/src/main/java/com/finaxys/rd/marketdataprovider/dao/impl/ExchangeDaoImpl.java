@@ -19,7 +19,7 @@ import com.finaxys.rd.marketdataprovider.dao.exception.DataAccessException;
  */
 public class ExchangeDaoImpl extends AbstractBasicDao<Exchange> implements ExchangeDao {
 
-	static Logger logger = Logger.getLogger(ExchangeDaoImpl.class);
+	private static Logger logger = Logger.getLogger(ExchangeDaoImpl.class);
 
 	public ExchangeDaoImpl() {
 		super();
