@@ -6,7 +6,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>market-data-provider-domain</module>
 		<module>market-data-provider-dao</module>
 		<module>market-data-provider-service</module>
 		<module>market-data-provider-app</module>
